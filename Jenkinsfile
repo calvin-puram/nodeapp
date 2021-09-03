@@ -1,20 +1,35 @@
+def gv
+
 pipeline {
     agent any
     tools {
         nodejs "nodejs"
     }
     stages {
-        stage('cloning git'){
+        stage('init'){
             steps {
-                
-                git([url: 'https://github.com/calvin-puram/nodeapp.git', branch: 'master', credentialsId: 'github'])
+                script {
+                    gv = load "script.groovy"
+                }
             }
         }
-        stage('install dependencies'){
+
+        stage('cloning-app'){
             steps {
-                sh "ls /var/jenkins_home/workspace/pipeline-job@2 "
+                script {
+                    gv.cloneApp()
+                }
             }
         }
+
+        stage('building-image'){
+            steps {
+                script {
+                    gv.buildImage()
+                }
+            }
+        }
+
         stage('deploying'){
             when {
                 expression {
@@ -22,7 +37,9 @@ pipeline {
                 }
             }
             steps {
-                echo "deploying app"
+                script {
+                    gv.deployApp()
+                }
             }
         }
     }
