@@ -7,7 +7,7 @@ pipeline {
         stage('cloning git'){
             steps {
                 
-                git([url: 'https://github.com/calvin-puram/nodeapp.git', branch: 'master', credentialsId: 'github-credential'])
+                git([url: 'https://github.com/calvin-puram/nodeapp.git', branch: 'master', credentialsId: 'github'])
             }
         }
         stage('install dependencies'){
