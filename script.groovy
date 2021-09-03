@@ -14,7 +14,10 @@ def buildImage() {
 }
 
 def deployApp() {
-  echo "deploying the application"
+  sshagent(['ec2-secret-key']) {
+    def dockerCmd = "docker run -p 5000:5000 -d puram/tour:1.0.0"
+    sh "ssh -o StrictHostKeyChecking=no ubuntu@18.116.80.221 ${dockerCmd}"
+}
 }
 
 return this
