@@ -4,14 +4,19 @@ pipeline {
         nodejs "nodejs"
     }
     stages {
-        stage('test npm'){
+        stage('cloning git'){
             steps {
-                sh "npm config ls"
+                git "https://github.com/calvin-puram/nodeapp.git"
             }
         }
-        stage('deploy-app'){
+        stage('install dependencies'){
             steps {
-                echo "deploying app..."
+                sh "npm install"
+            }
+        }
+        stage('deploying'){
+            steps {
+                echo "deploying app"
             }
         }
     }
