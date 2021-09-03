@@ -12,7 +12,7 @@ pipeline {
         }
         stage('install dependencies'){
             steps {
-                sh "npm install"
+                sh "ls /var/jenkins_home/workspace/pipeline-job@2 "
             }
         }
         stage('deploying'){
