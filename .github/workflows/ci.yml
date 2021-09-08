@@ -42,5 +42,5 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: puram/tour:2.1.0
+        tags: puram/tour:2.1.1
 
